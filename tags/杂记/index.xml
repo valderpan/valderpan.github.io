@@ -1,12 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>PHR的个人博客</title>
-        <link>http://example.org/</link>
-        <description>这是我的全新 Hugo test </description>
+        <title>杂记 - 标签 - PHR的个人博客</title>
+        <link>http://example.org/tags/%E6%9D%82%E8%AE%B0/</link>
+        <description>杂记 - 标签 - PHR的个人博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>haoran_pan@qq.com (PHR)</managingEditor>
-            <webMaster>haoran_pan@qq.com (PHR)</webMaster><lastBuildDate>Fri, 19 Mar 2021 19:04:22 &#43;0800</lastBuildDate>
-            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+            <webMaster>haoran_pan@qq.com (PHR)</webMaster><lastBuildDate>Fri, 19 Mar 2021 19:04:22 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E6%9D%82%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
     <title>Hugo的第一篇文章</title>
     <link>http://example.org/posts/test1/</link>
     <pubDate>Fri, 19 Mar 2021 19:04:22 &#43;0800</pubDate>
