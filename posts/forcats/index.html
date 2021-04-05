@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/forcats\/"
-        },"genre": "posts","keywords": "编程","wordcount":  908 ,
+        },"genre": "posts","keywords": "编程","wordcount":  860 ,
         "url": "http:\/\/example.org\/posts\/forcats\/","publisher": {
             "@type": "Organization",
             "name": "PHR"},"author": {
@@ -77,7 +77,7 @@
             <div class="toc-content always-active" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">[forcats]关于因子的操作</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>PHR</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/r/"><i class="far fa-folder fa-fw"></i>R</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 908 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 860 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -87,10 +87,10 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1常规作图">1.常规作图：</a></li>
-    <li><a href="#2利用fct_reorder函数排序">2.利用==fct_reorder==函数排序：</a></li>
-    <li><a href="#3利用fct_relevel函数对因子进行手动排序">3.利用==fct_relevel函数==对因子进行==手动排序==</a></li>
-    <li><a href="#4利用fct_infreq对因子按照频率进行排序默认频率最大的在最下边">4.利用==fct_infreq==对因子按照==频率==进行排序，默认==频率最大的在最下边==</a></li>
-    <li><a href="#5利用fct_rev可以将上面的排序进行反转">5.利用==fct_rev==可以将==上面的排序进行反转==</a></li>
+    <li><a href="#2利用fct_reorder函数排序">2.利用fct_reorder函数排序：</a></li>
+    <li><a href="#3利用fct_relevel函数对因子进行手动排序">3.利用fct_relevel函数对因子进行手动排序</a></li>
+    <li><a href="#4利用fct_infreq对因子按照频率进行排序默认频率最大的在最下边">4.利用fct_infreq对因子按照频率进行排序，默认频率最大的在最下边</a></li>
+    <li><a href="#5利用fct_rev可以将上面的排序进行反转">5.利用fct_rev可以将上面的排序进行反转</a></li>
     <li><a href="#6fct_lump_n">6.fct_lump_n()</a></li>
   </ul>
 </nav></div>
@@ -98,11 +98,11 @@
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="https://github.com/tidyverse/forcats/blob/master/man/figures/logo.png"
-        data-srcset="https://github.com/tidyverse/forcats/blob/master/man/figures/logo.png, https://github.com/tidyverse/forcats/blob/master/man/figures/logo.png 1.5x, https://github.com/tidyverse/forcats/blob/master/man/figures/logo.png 2x"
+        data-src="/posts_pic/forcats/clipboard1.png"
+        data-srcset="/posts_pic/forcats/clipboard1.png, /posts_pic/forcats/clipboard1.png 1.5x, /posts_pic/forcats/clipboard1.png 2x"
         data-sizes="auto"
-        alt="https://github.com/tidyverse/forcats/blob/master/man/figures/logo.png"
-        title="forcats" />
+        alt="/posts_pic/forcats/clipboard1.png"
+        title="data" />
 官方网站:https://github.com/tidyverse/forcats</p>
 <p>R包安装与加载：</p>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#39;forcats&#39;</span><span class="p">)</span>
@@ -127,7 +127,7 @@
         data-sizes="auto"
         alt="/posts_pic/forcats/clipboard3.png"
         title="pic3" /></p>
-<h2 id="2利用fct_reorder函数排序">2.利用==fct_reorder==函数排序：</h2>
+<h2 id="2利用fct_reorder函数排序">2.利用fct_reorder函数排序：</h2>
 <p>这个函数让排序按照一个数值变量来！！</p>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">Number</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="nf">fct_reorder</span><span class="p">(</span><span class="n">Description</span><span class="p">,</span><span class="n">Number</span><span class="p">)))</span><span class="o">+</span> <span class="n">\</span>
     <span class="nf">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s">&#39;identity&#39;</span><span class="p">)</span><span class="o">+</span><span class="nf">coord_flip</span><span class="p">()</span>
@@ -183,8 +183,8 @@
         data-sizes="auto"
         alt="/posts_pic/forcats/clipboard7.png"
         title="pic7" /></p>
-<p>因为<strong>country列和lifeExp列是一对多的关系</strong>，默认是按照==中位数==去排
-中位数这个默认操作，是可以换的，比如换成<strong>最低值</strong>,只需在<strong>fct_reorder</strong>中==添加第三个参数==即可。</p>
+<p>因为<strong>country列和lifeExp列是一对多的关系</strong>，默认是按照中位数去排
+中位数这个默认操作，是可以换的，比如换成<strong>最低值</strong>,只需在<strong>fct_reorder</strong>中添加第三个参数即可。</p>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifeExp</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.8</span><span class="p">)</span> <span class="o">+</span> <span class="n">\</span>
     <span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="nf">fct_reorder</span><span class="p">(</span><span class="n">country</span><span class="p">,</span><span class="n">lifeExp</span><span class="p">,</span><span class="n">min</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 </code></pre></div><p><img
@@ -195,7 +195,7 @@
         data-sizes="auto"
         alt="/posts_pic/forcats/clipboard8.png"
         title="pic8" /></p>
-<p>也可以换成max去试试。你还可以==自定义函数==，比如说<strong>最大值与最小值之差</strong>，也就是按照差值大小来排:</p>
+<p>也可以换成max去试试。你还可以自定义函数，比如说<strong>最大值与最小值之差</strong>，也就是按照差值大小来排:</p>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">tt</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">year</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lifeExp</span><span class="p">))</span> <span class="o">+</span> <span class="n">\</span>
     <span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.8</span><span class="p">)</span> <span class="o">+</span> <span class="n">\</span>
     <span class="nf">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="nf">fct_reorder</span><span class="p">(</span><span class="n">country</span><span class="p">,</span><span class="n">lifeExp</span><span class="p">,</span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="nf">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">}),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
@@ -207,8 +207,8 @@
         data-sizes="auto"
         alt="/posts_pic/forcats/clipboard9.png"
         title="pic9" /></p>
-<p>反过来排序，只需把函数定义为最小值减最大值，就和上图反过来了。或者是加上==fct_rev()函数==。</p>
-<h2 id="3利用fct_relevel函数对因子进行手动排序">3.利用==fct_relevel函数==对因子进行==手动排序==</h2>
+<p>反过来排序，只需把函数定义为最小值减最大值，就和上图反过来了。或者是加上fct_rev()函数。</p>
+<h2 id="3利用fct_relevel函数对因子进行手动排序">3.利用fct_relevel函数对因子进行手动排序</h2>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">library</span><span class="p">(</span><span class="n">palmerpenguins</span><span class="p">)</span>
 </code></pre></div><p>数据预览：
 <img
@@ -242,7 +242,7 @@
         data-sizes="auto"
         alt="/posts_pic/forcats/clipboard12.png"
         title="pic12" /></p>
-<h2 id="4利用fct_infreq对因子按照频率进行排序默认频率最大的在最下边">4.利用==fct_infreq==对因子按照==频率==进行排序，默认==频率最大的在最下边==</h2>
+<h2 id="4利用fct_infreq对因子按照频率进行排序默认频率最大的在最下边">4.利用fct_infreq对因子按照频率进行排序，默认频率最大的在最下边</h2>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">penguins</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nf">fct_infreq</span><span class="p">(</span><span class="n">species</span><span class="p">)))</span><span class="o">+</span><span class="nf">geom_bar</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
 </code></pre></div><p><img
         class="lazyload"
@@ -252,7 +252,7 @@
         data-sizes="auto"
         alt="/posts_pic/forcats/clipboard13.png"
         title="pic13" /></p>
-<h2 id="5利用fct_rev可以将上面的排序进行反转">5.利用==fct_rev==可以将==上面的排序进行反转==</h2>
+<h2 id="5利用fct_rev可以将上面的排序进行反转">5.利用fct_rev可以将上面的排序进行反转</h2>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">ggplot</span><span class="p">(</span><span class="n">penguins</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="nf">fct_infreq</span><span class="p">(</span><span class="n">species</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">fct_rev</span><span class="p">()))</span><span class="o">+</span> <span class="n">\</span>
     <span class="nf">geom_bar</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">)</span>
 </code></pre></div><p><img
@@ -266,8 +266,8 @@
 <h2 id="6fct_lump_n">6.fct_lump_n()</h2>
 <p>汇总某一列中所有的内容，指定一个n定义出现频率前n个的内容，其他内容可以更改</p>
 <p>举例：将main_genre列出现频率最高的前7个正常打印，剩余的其他的均打印为&quot;Less common\n genres&quot;
-原格式：
-<img
+原格式：</p>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="/posts_pic/forcats/clipboard15.png"
@@ -277,8 +277,8 @@
         title="pic15" /></p>
 <div class="highlight"><pre class="chroma"><code class="language-R" data-lang="R"><span class="nf">mutate</span><span class="p">(</span><span class="n">main_genre</span> <span class="o">=</span> <span class="nf">fct_lump_n</span><span class="p">(</span><span class="n">main_genre</span><span class="p">,</span> <span class="m">7</span><span class="p">,</span><span class="n">other_level</span> <span class="o">=</span> <span class="s">&#34;Less common\n genres&#34;</span><span class="p">)</span>
 </code></pre></div><p>即出现频率由高到低，前7个最高的不变，其余的都更改为&quot;Less common\n genres&quot;</p>
-<p>更改后：
-<img
+<p>更改后：</p>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="/posts_pic/forcats/clipboard16.png"
