@@ -12,11 +12,11 @@
     <guid>http://example.org/posts/test1/</guid>
     <description><![CDATA[test post 试试中文可不可以显示！ 现在时间2021.03.19！ add something]]></description>
 </item><item>
-    <title></title>
+    <title>[forcats]关于因子的操作</title>
     <link>http://example.org/posts/forcats/</link>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>作者</author>
     <guid>http://example.org/posts/forcats/</guid>
-    <description><![CDATA[[forcats]关于因子的操作 所有关于因子的操作，均可使用R中的forcats包 官方网站:https://github.com/tidyv]]></description>
+    <description><![CDATA[所有关于因子factor的操作，均可使用R中的forcats包 官方网站:https://github.com/tidyverse/forca]]></description>
 </item></channel>
 </rss>
