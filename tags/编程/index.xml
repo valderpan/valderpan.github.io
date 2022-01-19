@@ -4,7 +4,14 @@
         <link>http://example.org/tags/%E7%BC%96%E7%A8%8B/</link>
         <description>编程 - 标签 - PHR的个人博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>panpyhr@gmail.com (PHR)</managingEditor>
-            <webMaster>panpyhr@gmail.com (PHR)</webMaster><lastBuildDate>Wed, 19 Jan 2022 17:54:30 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>panpyhr@gmail.com (PHR)</webMaster><lastBuildDate>Wed, 19 Jan 2022 19:17:22 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>[dplyr]数据清洗与整理</title>
+    <link>http://example.org/dplyr%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E4%B8%8E%E6%95%B4%E7%90%86/</link>
+    <pubDate>Wed, 19 Jan 2022 19:17:22 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://example.org/dplyr%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E4%B8%8E%E6%95%B4%E7%90%86/</guid>
+    <description><![CDATA[dplyr主要函数： mutate() 对已有列数据变换并添加新的列，类似标准函数transform select() 按照列名筛选列，可结合starts_with，ends_]]></description>
+</item><item>
     <title>[stringr]处理字符串</title>
     <link>http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
     <pubDate>Wed, 19 Jan 2022 17:54:30 &#43;0800</pubDate>
@@ -12,16 +19,9 @@
     <guid>http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
     <description><![CDATA[【stringr】处理字符串 【数据与平行世界】R数据处理-4:stringr与正则表达式 1.【str_extract、str_extract]]></description>
 </item><item>
-    <title>[dplyr]数据清洗与整理</title>
-    <link>http://example.org/dplyr%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E4%B8%8E%E6%95%B4%E7%90%86/</link>
-    <pubDate>Sun, 11 Apr 2021 19:17:22 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>http://example.org/dplyr%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97%E4%B8%8E%E6%95%B4%E7%90%86/</guid>
-    <description><![CDATA[dplyr主要函数： mutate() 对已有列数据变换并添加新的列，类似标准函数transform select() 按照列名筛选列，可结合starts_with，ends_]]></description>
-</item><item>
     <title>[forcats]关于因子的操作</title>
     <link>http://example.org/forcats%E5%85%B3%E4%BA%8E%E5%9B%A0%E5%AD%90%E7%9A%84%E6%93%8D%E4%BD%9C/</link>
-    <pubDate>Mon, 05 Apr 2021 16:14:22 &#43;0800</pubDate>
+    <pubDate>Wed, 19 Jan 2022 16:14:22 &#43;0800</pubDate>
     <author>作者</author>
     <guid>http://example.org/forcats%E5%85%B3%E4%BA%8E%E5%9B%A0%E5%AD%90%E7%9A%84%E6%93%8D%E4%BD%9C/</guid>
     <description><![CDATA[所有关于因子factor的操作，均可使用R中的forcats包 官方网站:https://github.com/tidyverse/forca]]></description>
