@@ -7,7 +7,7 @@
 >
 
 
-![Untitled](/posts_pic/stringr处理字符串/Untitled.png)
+![Untitled](/posts_pics/stringr处理字符串/Untitled.png)
 
 # 1.【str_extract、str_extract_all】 字符串提取
 
@@ -42,11 +42,11 @@ dd %>% mutate(CHR=str_extract(X1,"Chr\\d+"))
 dd %>% mutate(CHR=substr(X1,1,5))
 ```
 
-![Untitled](/posts_pic/stringr处理字符串/Untitled1.png)
+![Untitled](/posts_pics/stringr处理字符串/Untitled1.png)
 
-![Untitled](/posts_pic/stringr处理字符串/Untitled2.png)
+![Untitled](/posts_pics/stringr处理字符串/Untitled2.png)
 
-![Untitled](/posts_pic/stringr处理字符串/Untitled3.png)
+![Untitled](/posts_pics/stringr处理字符串/Untitled3.png)
 
 # 2.【str_c】字符串拼接
 
