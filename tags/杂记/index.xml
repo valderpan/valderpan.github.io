@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>杂记 - 分类 - PHR的个人博客</title>
-        <link>http://example.org/categories/%E6%9D%82%E8%AE%B0/</link>
-        <description>杂记 - 分类 - PHR的个人博客</description>
+        <title>杂记 - 标签 - PHR的个人博客</title>
+        <link>http://example.org/tags/%E6%9D%82%E8%AE%B0/</link>
+        <description>杂记 - 标签 - PHR的个人博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>panpyhr@gmail.com (PHR)</managingEditor>
-            <webMaster>panpyhr@gmail.com (PHR)</webMaster><lastBuildDate>Fri, 19 Mar 2021 15:58:22 &#43;0800</lastBuildDate><atom:link href="http://example.org/categories/%E6%9D%82%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>panpyhr@gmail.com (PHR)</webMaster><lastBuildDate>Fri, 19 Mar 2021 15:58:22 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E6%9D%82%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
     <title>My Blog 第一篇博客</title>
     <link>http://example.org/firstpost/</link>
     <pubDate>Fri, 19 Mar 2021 15:58:22 &#43;0800</pubDate>
