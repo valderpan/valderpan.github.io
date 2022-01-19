@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>编程 - 标签 - PHR的个人博客</title>
+        <link>http://example.org/tags/%E7%BC%96%E7%A8%8B/</link>
+        <description>编程 - 标签 - PHR的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>panpyhr@gmail.com (PHR)</managingEditor>
+            <webMaster>panpyhr@gmail.com (PHR)</webMaster><lastBuildDate>Wed, 19 Jan 2022 17:54:30 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E7%BC%96%E7%A8%8B/" rel="self" type="application/rss+xml" /><item>
+    <title>Stringr处理字符串</title>
+    <link>http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+    <pubDate>Wed, 19 Jan 2022 17:54:30 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+    <description><![CDATA[【stringr】处理字符串 【数据与平行世界】R数据处理-4:stringr与正则表达式 1.【str_extract、str_extract]]></description>
+</item></channel>
+</rss>

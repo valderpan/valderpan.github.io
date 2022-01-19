@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Stringr处理字符串 - PHR的个人博客</title><meta name="Description" content="这是我的全新 Hugo blog "><meta property="og:title" content="Stringr处理字符串" />
+<meta property="og:description" content="【stringr】处理字符串 【数据与平行世界】R数据处理-4:stringr与正则表达式 1.【str_extract、str_extract" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-19T17:54:30+08:00" />
+<meta property="article:modified_time" content="2022-01-19T17:54:30+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
+
+<meta name="twitter:title" content="Stringr处理字符串"/>
+<meta name="twitter:description" content="【stringr】处理字符串 【数据与平行世界】R数据处理-4:stringr与正则表达式 1.【str_extract、str_extract"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/" /><link rel="prev" href="http://example.org/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Stringr处理字符串",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2\/"
+        },"genre": "posts","keywords": "编程","wordcount":  2719 ,
+        "url": "http:\/\/example.org\/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2\/","datePublished": "2022-01-19T17:54:30+08:00","dateModified": "2022-01-19T17:54:30+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "PHR"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('light' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'light' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="PHR的个人博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>PHR&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="PHR的个人博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>PHR&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Stringr处理字符串</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>PHR</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/r/"><i class="far fa-folder fa-fw"></i>R</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-19">2022-01-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2719 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="stringr处理字符串">【stringr】处理字符串</h1>
+<blockquote>
+<p>【数据与平行世界】R数据处理-4:stringr与正则表达式</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled.png"
+        data-srcset="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled.png, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled.png 1.5x, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled.png 2x"
+        data-sizes="auto"
+        alt="/posts_pic/stringr处理字符串/Untitled.png"
+        title="Untitled" /></p>
+<h1 id="1str_extractstr_extract_all-字符串提取">1.【str_extract、str_extract_all】 字符串提取</h1>
+<p>字符提取函数<code>str_extract</code>和<code>str_extract_all</code>，对字符串进行提取，<code>str_extract_all</code>函数返回所有的匹配结果。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 提取第一个匹配到的字符</span>
+<span class="nf">str_extract</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;a&#34;</span>
+
+<span class="c1"># 提取所有匹配到的字符（返回列表）</span>
+<span class="nf">str_extract_all</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">## [[1]]</span>
+<span class="c1">## [1] &#34;a&#34; &#34;a&#34; &#34;a&#34;</span>
+
+<span class="c1"># 提取所有匹配到的字符（返回矩阵）</span>
+<span class="nf">str_extract_all</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="n">simplify</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+
+<span class="c1">##      [,1] [,2] [,3]</span>
+<span class="c1">## [1,] &#34;a&#34;  &#34;a&#34;  &#34;a&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>需求一：添加一列，此列为原df里面某一列中的几个字符。例如去掉等位的染色体ID</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1">#使用正则表达式匹配</span>
+<span class="n">dd</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">CHR</span><span class="o">=</span><span class="nf">str_extract</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="s">&#34;Chr\\d+&#34;</span><span class="p">))</span>
+<span class="c1">#BaseR</span>
+<span class="n">dd</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">CHR</span><span class="o">=</span><span class="nf">substr</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled1.png"
+        data-srcset="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled1.png, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled1.png 1.5x, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled1.png 2x"
+        data-sizes="auto"
+        alt="/posts_pic/stringr处理字符串/Untitled1.png"
+        title="Untitled" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled2.png"
+        data-srcset="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled2.png, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled2.png 1.5x, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled2.png 2x"
+        data-sizes="auto"
+        alt="/posts_pic/stringr处理字符串/Untitled2.png"
+        title="Untitled" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled3.png"
+        data-srcset="/posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled3.png, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled3.png 1.5x, /posts_pic/stringr%e5%a4%84%e7%90%86%e5%ad%97%e7%ac%a6%e4%b8%b2/Untitled3.png 2x"
+        data-sizes="auto"
+        alt="/posts_pic/stringr处理字符串/Untitled3.png"
+        title="Untitled" /></p>
+<h1 id="2str_c字符串拼接">2.【str_c】字符串拼接</h1>
+<ul>
+<li>stringr</li>
+</ul>
+<p>str_c需要传入两个字符参数，另外,collapse参数是将两个字符参数连接，sep参数是将两个字符参数内部的字符连接</p>
+<p>即：<strong>「sep用于指定变量内连接符，collapse用于指定变量间连接符！」</strong></p>
+<p><strong>所谓变量间：如：c(&ldquo;a&rdquo;,&ldquo;b&rdquo;)；c(&ldquo;c&rdquo;,&ldquo;d&rdquo;) &ndash; 这就是两个变量，指定他们之间的连接符用的就是 collapse；</strong></p>
+<p><strong>所谓变量内：如：c(&ldquo;a&rdquo;,&ldquo;b&rdquo;) &ndash; a和 b都属于一个向量，所以他们两之间的连接符用 sep来指定！</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 默认无向量分割符拼接</span>
+<span class="nf">str_c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;ab&#34;</span>
+
+<span class="c1"># 指定向量分隔符</span>
+<span class="nf">str_c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;a_b&#34;</span>
+
+<span class="c1"># 指定向量折叠符</span>
+<span class="nf">str_c</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="s">&#34;c&#34;</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;a_b_c&#34;</span>
+
+<span class="c1"># 混合应用</span>
+<span class="nf">str_c</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="s">&#34;d&#34;</span><span class="p">),</span><span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;/&#34;</span><span class="p">,</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;a/c_b/d&#34;</span>
+
+<span class="nf">str_c</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">,</span><span class="s">&#39;d&#39;</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#39;\\&#39;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;ac\\bd&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用baseR实现上述：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1">## 顺便再科普一下paste和paste0的用法: 两者的唯一区别在于paste0的sep=&#34;&#34;</span>
+<span class="nf">paste</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">)</span>  <span class="c1"># 默认用空格连接</span>
+<span class="c1"># [1] &#34;a b&#34;</span>
+
+<span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">)</span>  <span class="c1"># 默认无向量分割符拼接</span>
+<span class="c1"># [1] &#34;ab&#34;</span>
+
+<span class="nf">paste</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>  <span class="c1"># 指定分割符,但是paste0没有sep参数！</span>
+<span class="c1"># [1] &#34;a_b&#34;</span>
+
+<span class="nf">paste</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="s">&#34;c&#34;</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>  <span class="c1"># paste元素内部连接</span>
+<span class="c1"># [1] &#34;a_b_c&#34;</span>
+
+<span class="nf">paste0</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="s">&#34;c&#34;</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>  <span class="c1"># paste0元素内部连接</span>
+<span class="c1"># [1] &#34;a_b_c&#34;</span>
+
+<span class="c1"># 混合应用</span>
+<span class="nf">paste</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="s">&#34;d&#34;</span><span class="p">),</span><span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;/&#34;</span><span class="p">,</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>
+<span class="c1"># [1] &#34;a/c_b/d&#34;</span>
+
+<span class="nf">paste0</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;b&#34;</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="s">&#34;d&#34;</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;_&#34;</span><span class="p">)</span>
+<span class="c1"># [1] &#34;ac_bd&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="3str_splitstr_split_fixed字符串分割">3.【str_split、str_split_fixed】字符串分割</h1>
+<p>字符分割函数<code>str_split</code>和<code>str_split_fixed</code>，对字符串进行分割。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 字符分割，返回列表</span>
+<span class="nf">str_split</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+
+<span class="c1">## [[1]]</span>
+<span class="c1">## [1] &#34;b&#34; &#34;a&#34; &#34;n&#34; &#34;a&#34; &#34;n&#34; &#34;a&#34;</span>
+
+<span class="c1"># 字符分割，返回矩阵</span>
+<span class="nf">str_split</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span><span class="n">simplify</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+
+<span class="c1">##      [,1] [,2] [,3] [,4] [,5] [,6]</span>
+<span class="c1">## [1,] &#34;b&#34;  &#34;a&#34;  &#34;n&#34;  &#34;a&#34;  &#34;n&#34;  &#34;a&#34;</span>
+
+<span class="c1"># 字符分割，指定分割块数</span>
+<span class="nf">str_split_fixed</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+
+<span class="c1">##      [,1] [,2] [,3]  </span>
+<span class="c1">## [1,] &#34;b&#34;  &#34;a&#34;  &#34;nana&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="4str_substr_subset-提取字符串">4.【str_sub、str_subset】 提取字符串</h1>
+<p>函数<code>str_sub</code>和<code>str_subset</code></p>
+<p><code>str_sub</code>函数通过指定开始和结束位置，提取出字符串的部分字符串。<code>str_subset</code>函数通过匹配模式，过滤出满足模式的字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1">###### 按位置提取：######</span>
+<span class="c1"># 字符提取（正向索引）</span>
+<span class="nf">str_sub</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">start</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;ban&#34;</span>
+
+<span class="c1"># 字符提取（反向索引）</span>
+<span class="nf">str_sub</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">start</span> <span class="o">=</span> <span class="m">-2</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="m">-1</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;na&#34;</span>
+
+<span class="c1"># 字符提取，并赋值</span>
+<span class="n">x</span> <span class="o">&lt;-</span> <span class="s">&#34;banana&#34;</span>
+<span class="nf">str_sub</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span><span class="n">start</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&#34;A&#34;</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;Aanana&#34;</span>
+
+<span class="c1">###### 按匹配模式提取 ######</span>
+<span class="c1"># 字符串提取（返回字符串）</span>
+<span class="nf">str_subset</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;java&#34;</span><span class="p">,</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;python&#34;</span><span class="p">),</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;^s&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;sql&#34;</span>
+
+<span class="c1"># 字符串提取（返回位置）</span>
+<span class="nf">str_which</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;java&#34;</span><span class="p">,</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;python&#34;</span><span class="p">),</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;^s&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] 2</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="5str_count-统计字符串出现的次数">5.【str_count】 统计字符串出现的次数</h1>
+<p>字符计数函数<code>str_count</code>，计算字符串中指定字符的个数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 单个目标字符计数</span>
+<span class="nf">str_count</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;java&#34;</span><span class="p">),</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;s&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] 1 1 0</span>
+
+<span class="c1"># 多个目标字符计数</span>
+<span class="nf">str_count</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;java&#34;</span><span class="p">),</span><span class="n">pattern</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;s&#34;</span><span class="p">,</span><span class="s">&#34;j&#34;</span><span class="p">,</span><span class="s">&#34;a&#34;</span><span class="p">))</span>
+
+<span class="c1">## [1] 1 1 2</span>
+
+<span class="c1"># 元字符查找计数（fixed包裹元字符）</span>
+<span class="nf">str_count</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;a..b&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="nf">fixed</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">))</span>
+
+<span class="c1">## [1] 2</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="6str_detect字符检查">6.【str_detect】字符检查</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 字符检查函数`str_detect`，检查字符串中是否包含指定字符，返回逻辑向量。</span>
+<span class="nf">str_detect</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;java&#34;</span><span class="p">),</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;s&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1]  TRUE  TRUE FALSE</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="7str_dup字符复制">7.【str_dup】字符复制</h1>
+<p>字符复制函数<code>str_dup</code>，将字符向量重复若干次，返回重复后的字符向量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="nf">str_dup</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;java&#34;</span><span class="p">),</span><span class="n">times</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;sqlsql&#34;   &#34;jsonjson&#34; &#34;javajava&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="8str_glue字符格式化">8.【str_glue】字符格式化</h1>
+<p>字符串格式化函数<code>str_glue</code>，用花括号<code>{}</code>表示占位符，括号内的变量被替换成全局变量值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 定义全局变量</span>
+<span class="n">name</span> <span class="o">&lt;-</span> <span class="s">&#34;jack&#34;</span>
+<span class="n">age</span> <span class="o">&lt;-</span> <span class="m">12</span>
+
+<span class="c1"># 字符串格式化</span>
+<span class="nf">str_glue</span><span class="p">(</span><span class="s">&#34;My name is {name},&#34;</span><span class="p">,</span><span class="s">&#34;\nmy age is {age}.&#34;</span><span class="p">)</span>
+
+<span class="c1">## My name is jack,</span>
+<span class="c1">## my age is 12.</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="9str_length字符串长度">9.【str_length】<strong>字符串长度</strong></h1>
+<p>字符串长度函数<code>str_length</code>，计算字符串长度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="nf">str_length</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] 6</span>
+
+<span class="c1"># 功能等同于R自带的函数：</span>
+<span class="nf">nchar</span><span class="p">(</span><span class="s">&#34;banana&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="10str_locatestr_locate_all字符位置提取">10.【str_locate、str_locate_all】字符位置提取</h1>
+<p>字符位置提取函数<code>str_locate</code>和<code>str_locate_all</code>,返回匹配到的字符的位置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 返回第一个匹配到的字符的位置</span>
+<span class="nf">str_locate</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">##      start end</span>
+<span class="c1">## [1,]     2   2</span>
+
+<span class="c1"># 返回所有匹配到的字符的位置</span>
+<span class="nf">str_locate_all</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">## [[1]]</span>
+<span class="c1">##      start end</span>
+<span class="c1">## [1,]     2   2</span>
+<span class="c1">## [2,]     4   4</span>
+<span class="c1">## [3,]     6   6</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="11str_pad字符补齐">11.【str_pad】字符补齐</h1>
+<p>字符补齐函数<code>str_pad</code>，用于在字符串中添加单个字符，可选择添加的位置，在参数<code>side</code>中进行设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 默认字符串左边补齐</span>
+<span class="nf">str_pad</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;jack&#34;</span><span class="p">,</span><span class="n">width</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span><span class="n">pad</span> <span class="o">=</span> <span class="s">&#34;S&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;SSjack&#34;</span>
+
+<span class="c1"># 字符串右边补齐</span>
+<span class="nf">str_pad</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;jack&#34;</span><span class="p">,</span><span class="n">width</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span><span class="n">side</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">,</span><span class="n">pad</span> <span class="o">=</span> <span class="s">&#34;S&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;jackSS&#34;</span>
+
+<span class="c1"># 字符串两边补齐</span>
+<span class="nf">str_pad</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;jack&#34;</span><span class="p">,</span><span class="n">width</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span><span class="n">side</span> <span class="o">=</span> <span class="s">&#34;both&#34;</span><span class="p">,</span><span class="n">pad</span> <span class="o">=</span> <span class="s">&#34;S&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;SjackS&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="12str_removestr_remove_all字符删除">12.【str_remove、str_remove_all】字符删除</h1>
+<p>字符删除函数<code>str_remove</code>和<code>str_remove_all</code>，用于删除字符串中的部分字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 删除第一个匹配到的字符</span>
+<span class="nf">str_remove</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;bnana&#34;</span>
+
+<span class="c1"># 删除所有匹配到的字符</span>
+<span class="nf">str_remove_all</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;bnn&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="13str_replacestr_replace_allstr_replace_na字符替换">13.【str_replace、str_replace_all、str_replace_na】<strong>字符替换</strong></h1>
+<p>字符替换函数<code>str_replace</code>、<code>str_replace_all</code>和<code>str_replace_na</code>，用于替换字符串中的部分字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 替换第一个匹配到的字符</span>
+<span class="nf">str_replace</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">,</span><span class="n">replacement</span> <span class="o">=</span> <span class="s">&#34;A&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;bAnana&#34;</span>
+
+<span class="c1"># 替换所有匹配到的字符</span>
+<span class="nf">str_replace_all</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">,</span><span class="n">replacement</span> <span class="o">=</span> <span class="s">&#34;A&#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;bAnAnA&#34;</span>
+
+<span class="c1"># 将NA替换成NA字符</span>
+<span class="nf">str_replace_na</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;banana&#34;</span><span class="p">,</span><span class="kc">NA</span><span class="p">))</span>
+
+<span class="c1">## [1] &#34;banana&#34; &#34;NA&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="14sre_sortstr_order字符排序">14.【sre_sort、str_order】字符排序</h1>
+<p>字符排序函数<code>str_sort</code>和<code>str_order</code>，对字符向量进行排序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 字符向量升序排序，返回字符向量</span>
+<span class="nf">str_sort</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;python&#34;</span><span class="p">))</span>
+
+<span class="c1">## [1] &#34;json&#34;   &#34;python&#34; &#34;sql&#34;</span>
+
+<span class="c1"># 字符向量降序排序，返回字符向量</span>
+<span class="nf">str_sort</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;python&#34;</span><span class="p">),</span><span class="n">decreasing</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;sql&#34;    &#34;python&#34; &#34;json&#34;</span>
+
+<span class="c1"># 字符向量升序排序，返回索引向量</span>
+<span class="nf">str_order</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;sql&#34;</span><span class="p">,</span><span class="s">&#34;json&#34;</span><span class="p">,</span><span class="s">&#34;pythn&#34;</span><span class="p">))</span>
+
+<span class="c1">## [1] 2 3 1</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="15其他函数">15.其他函数</h1>
+<p><code>stringr</code>包中其他的有用函数，用于常见的字符处理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="c1"># 删除字符串两边的空格</span>
+<span class="nf">str_trim</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;  you are beautiful!  &#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;you are beautiful!&#34;</span>
+
+<span class="c1"># 删除字符串中多余的空格</span>
+<span class="nf">str_squish</span><span class="p">(</span><span class="n">string</span> <span class="o">=</span> <span class="s">&#34;  you are  beautiful!  &#34;</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;you are beautiful!&#34;</span>
+
+<span class="c1"># 字符转为小写</span>
+<span class="n">dog</span> <span class="o">&lt;-</span> <span class="s">&#34;The quick brown dog&#34;</span>
+<span class="nf">str_to_lower</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;the quick brown dog&#34;</span>
+
+<span class="c1"># 字符转为大写</span>
+<span class="nf">str_to_upper</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;THE QUICK BROWN DOG&#34;</span>
+
+<span class="c1"># 字符转为标题</span>
+<span class="nf">str_to_title</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;The Quick Brown Dog&#34;</span>
+
+<span class="c1"># 字符转为语句</span>
+<span class="nf">str_to_sentence</span><span class="p">(</span><span class="n">dog</span><span class="p">)</span>
+
+<span class="c1">## [1] &#34;The quick brown dog&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-01-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/" class="prev" rel="prev" title="使用Hugo搭建个人博客步骤"><i class="fas fa-angle-left fa-fw"></i>使用Hugo搭建个人博客步骤</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Keep running</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">PHR</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":30},"comment":{},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

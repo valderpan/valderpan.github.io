@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>所有文章 - PHR的个人博客</title>
+        <link>http://example.org/posts/</link>
+        <description>所有文章 | PHR的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>panpyhr@gmail.com (PHR)</managingEditor>
+            <webMaster>panpyhr@gmail.com (PHR)</webMaster><lastBuildDate>Wed, 19 Jan 2022 17:54:30 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Stringr处理字符串</title>
+    <link>http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+    <pubDate>Wed, 19 Jan 2022 17:54:30 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://example.org/stringr%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+    <description><![CDATA[【stringr】处理字符串 【数据与平行世界】R数据处理-4:stringr与正则表达式 1.【str_extract、str_extract]]></description>
+</item><item>
+    <title>使用Hugo搭建个人博客步骤</title>
+    <link>http://example.org/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/</link>
+    <pubDate>Wed, 19 Jan 2022 17:34:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>http://example.org/%E4%BD%BF%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%AD%A5%E9%AA%A4/</guid>
+    <description><![CDATA[使用Hugo搭建个人博客步骤： 1.安装Hugo、Git等必要软件 2.执行 hugo new site MyBlog创建本地博客文件夹 3.执行git init将文件夹交]]></description>
+</item></channel>
+</rss>
