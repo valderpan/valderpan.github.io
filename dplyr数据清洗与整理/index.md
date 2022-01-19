@@ -1,7 +1,7 @@
 # [dplyr]数据清洗与整理
 
 
-![dplyr](/posts_pic/dplyr/clipboard1.png)
+![dplyr](/posts_pic/dplyr数据清洗与整理/clipboard1.png)
 
 
 
@@ -52,7 +52,7 @@ mutate()函数是对已有列数据变换并添加为新的列
 df_mutate<- mutate(iris, new = Sepal.Length * Sepal.Width)
 head(df_mutate)
 ```
-![pic2](/posts_pic/dplyr/clipboard2.png)
+![pic2](/posts_pic/dplyr数据清洗与整理/clipboard2.png)
 
 
 
@@ -90,7 +90,7 @@ df_select<- select(iris, one_of(vars))
 + between(), near()
 
 使用韦恩图表示不同类型连接方式：
-![pic7](/posts_pic/dplyr/clipboard3.png)
+![pic7](/posts_pic/dplyr数据清洗与整理/clipboard3.png)
 
 
 
@@ -117,7 +117,7 @@ df_filter<- filter(iris, Sepal.Length > 5 & Species %in%c("setosa","versicolor")
 df_summarise<- summarise(iris, mean(Sepal.Length), sd(Sepal.Length))
 ```
 
-![pic4](/posts_pic/dplyr/clipboard4.png)
+![pic4](/posts_pic/dplyr数据清洗与整理/clipboard4.png)
 
 
 
@@ -134,7 +134,7 @@ df_summarise<- as.data.frame(df_summarise)
 iris %>% group_by(Species) %>% summarise(`mean(Sepal.Length)`=mean(Sepal.Length),`sd(Sepal.Length)`=sd(Sepal.Length))
 ```
 
-![pic5](/posts_pic/dplyr/clipboard5.png)
+![pic5](/posts_pic/dplyr数据清洗与整理/clipboard5.png)
 
 
 
@@ -145,7 +145,7 @@ iris %>% group_by(Species) %>% summarise(`mean(Sepal.Length)`=mean(Sepal.Length)
 
 数据类型：
 
-![pic6](/posts_pic/dplyr/original-dfs1.png)
+![pic6](/posts_pic/dplyr数据清洗与整理/original-dfs1.png)
 
 
 
@@ -162,7 +162,7 @@ x %>%  inner_join(y, by = "key")
 2     2 x2    y2
 ```
 
-![gif1](/posts_pic/dplyr/inner-join1.gif)
+![gif1](/posts_pic/dplyr数据清洗与整理/inner-join1.gif)
 
 
 
@@ -187,7 +187,7 @@ x %>%  inner_join(y, by = "key")
 3     3 x3    NA
 ```
 
-![gif2](/posts_pic/dplyr/left-join1.gif)
+![gif2](/posts_pic/dplyr数据清洗与整理/left-join1.gif)
 
 
 另：**如果x中的key变量，在y中有多个同样的key，那么所有的结合可能都会罗列出来**
@@ -203,7 +203,7 @@ x %>%  inner_join(y, by = "key")
 4     3 x3    NA
 ```
 
-![gif3](/posts_pic/dplyr/left-join-extra2.gif)
+![gif3](/posts_pic/dplyr数据清洗与整理/left-join-extra2.gif)
 
 
 
@@ -220,7 +220,7 @@ x %>%  inner_join(y, by = "key")
 3     4 NA    y3 
 ```
 
-![gif4](/posts_pic/dplyr/right-join1.gif)
+![gif4](/posts_pic/dplyr数据清洗与整理/right-join1.gif)
 
 
 
@@ -238,7 +238,7 @@ x %>%  inner_join(y, by = "key")
 4     4 NA    y3
 ```
 
-![gif5](/posts_pic/dplyr/full-join1.gif)
+![gif5](/posts_pic/dplyr数据清洗与整理/full-join1.gif)
 
 
 
@@ -247,12 +247,12 @@ x %>%  inner_join(y, by = "key")
 
 
 dplyr中这些连接函数对应基础函数merge中的功能表：
-![pic8](/posts_pic/dplyr/clipboard6.png)
+![pic8](/posts_pic/dplyr数据清洗与整理/clipboard6.png)
 
 
 
 dplyr这几种函数的来源SQL中对应的功能：
-![pic9](/posts_pic/dplyr/clipboard7.png)
+![pic9](/posts_pic/dplyr数据清洗与整理/clipboard7.png)
 
 
 
@@ -273,7 +273,7 @@ dplyr这几种函数的来源SQL中对应的功能：
 2     2 x2
 ```
 
-![gif6](/posts_pic/dplyr/semi-join1.gif)
+![gif6](/posts_pic/dplyr数据清洗与整理/semi-join1.gif)
 
 
 
@@ -288,7 +288,7 @@ dplyr这几种函数的来源SQL中对应的功能：
 1     3 x3
 ```
 
-![gif6](/posts_pic/dplyr/anti-join1.gif)
+![gif6](/posts_pic/dplyr数据清洗与整理/anti-join1.gif)
 
 
 
@@ -301,7 +301,7 @@ dplyr这几种函数的来源SQL中对应的功能：
 
 源文件格式：
 
-![pic10](/posts_pic/dplyr/clipboard8.png)
+![pic10](/posts_pic/dplyr数据清洗与整理/clipboard8.png)
 
 
 ```R
@@ -318,6 +318,6 @@ tuesdata$movies %>%
 
 更改后：
 
-![pic11](/posts_pic/dplyr/clipboard9.png)
+![pic11](/posts_pic/dplyr数据清洗与整理/clipboard9.png)
 
 
